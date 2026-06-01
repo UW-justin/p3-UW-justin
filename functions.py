@@ -2,9 +2,9 @@ import urllib.error, urllib.request, json
 
 # any colons or spaces should be hyphenated
 
-def get_pokemon_data(pokemon):
+def get_pokemon_data(name):
         baseurl = "https://pokeapi.co/api/v2/pokemon/"
-        poke_request = baseurl + pokemon
+        poke_request = baseurl + name
 
         req = urllib.request.Request(poke_request,
                                     headers={'User-Agent': 'Mozilla/5.0'}

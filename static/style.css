@@ -1,6 +1,7 @@
 body {
-    color:blanchedalmond;
+    color:black;
     font-family: "Outfit", sans-serif;
+    background-color: cornflowerblue;
 }
 
 header {
@@ -12,4 +13,9 @@ header {
 
 footer {
     color:black;
+}
+
+h6 {
+    font-style: italic;
+    color: aliceblue;
 }

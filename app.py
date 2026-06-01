@@ -19,7 +19,6 @@ def index():
 @app.route("/poke-info", methods=["POST"])
 def results():
     name = request.form["name"]
-    # sort = "sort" in request.form
 
     poke_data = functions.get_pokemon_data(name=name)
-    return render_template("pokeinfo.html", poke_data=poke_data)
+    return render_template("poke-info.html", poke_data=poke_data)
