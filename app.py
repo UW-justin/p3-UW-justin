@@ -18,10 +18,8 @@ def index():
 # pokemon info page
 @app.route("/poke-info", methods=["POST"])
 def results():
-    place = request.form["place"]
-    max_results = int(request.form["max_results"])
-    radius = float(request.form["radius"])
-    sort = "sort" in request.form
+    name = request.form["name"]
+    # sort = "sort" in request.form
 
-    articles = functions.wikipedia_locationsearch(place=place, max_results=max_results, radius=radius, sort=sort)
-    return render_template("results.html", articles=articles, place = place)
+    poke_data = functions.get_pokemon_data(name=name)
+    return render_template("pokeinfo.html", poke_data=poke_data)
