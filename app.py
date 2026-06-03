@@ -32,6 +32,7 @@ def results():
 
         for i in range(len(poke_types)):
             poke_types[i] = poke_types[i].title()
+        
         splash_art = poke_data["sprites"]["other"]["official-artwork"]["front_default"]
         height = poke_data["height"]
         id = poke_data["id"]
@@ -39,6 +40,12 @@ def results():
         return render_template("poke-info.html", poke_data=poke_data, poke_types=poke_types,weakness_dict=weakness_dict,
                                                 name=name, splash_art=splash_art, height=height, id=id, weight=weight)
     else:
-        if len(name) > 15:
-            name = name[0:15] + "..."
-        return render_template("poke-info.html", poke_data=poke_data, name=name)
+        if functions.has_varieties(name):
+            has_variety = True
+            varieties = functions.varieties(name)
+            return render_template("poke-info.html", poke_data=poke_data, name=name, has_variety=has_variety, varieties=varieties)
+        else:
+            has_variety = False
+            if len(name) > 15:
+                name = name[0:15] + "..."
+            return render_template("poke-info.html", poke_data=poke_data, name=name, has_variety=has_variety)

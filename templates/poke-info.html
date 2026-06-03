@@ -10,10 +10,20 @@
             <div class="col">
                 <div class="alert alert-info" role="alert">
                     <div> Sorry, we couldn't find any results for your query: "{{ name }}"</div>
+                    
+                    {% if has_variety %}
+                    <br><div>List of available forms for this Pokemon:</div>
+                    
+                    {% for i in varieties %}
+                        <h3> {{ i }} <br></h3>
+                    {% endfor %}
+
+                    {% else %}
                     <div>Perhaps you forgot a character?</div>
+                    {% endif %}
                 </div>
             </div>
-        </div>        
+        </div>
     </div>
 
     <div class="container">
@@ -67,19 +77,19 @@
     <div class="row bg-white">
 
         <div class="col-3 offset-2">
-            <h6>⚡️ SUPER EFFECTIVE! (4x dmg)</h6>
+            <h6>⚡️ DOUBLE SUPER EFFECTIVE! (4x)</h6>
         </div>
 
         <div class="col-2">
-            <h6>✅ Very effective! (2x dmg)</h6>
-        </div>
-
-        <div class="col-3">
-            <h6>⚠️ Not very effective (0.5x dmg)</h6>
+            <h6>✅ Super effective! (2x)</h6>
         </div>
 
         <div class="col-2">
-            <h6>❌ Immune (0x dmg)</h6>
+            <h6>⚠️ Not very effective (0.5x)</h6>
+        </div>
+
+        <div class="col-2">
+            <h6>❌ Immune (0x)</h6>
         </div>
 
     </div>
@@ -108,7 +118,7 @@
             {% endif %}
         </div>
 
-        <div class="col-3">
+        <div class="col-2">
             {% if weakness_dict[0.5] %}
                 {% for i in weakness_dict[0.5] %}
                     {{ i }}

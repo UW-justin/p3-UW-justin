@@ -1,7 +1,5 @@
 import urllib.error, urllib.request, json
 
-# any colons or spaces should be hyphenated
-
 def get_pokemon_data(name):
         baseurl = "https://pokeapi.co/api/v2/pokemon/"
         poke_request = baseurl + name
@@ -20,6 +18,44 @@ def get_pokemon_data(name):
         
         return poke_data
 
+def has_varieties(name):
+    baseurl = "https://pokeapi.co/api/v2/pokemon-species/"
+    poke_request = baseurl + name
+    
+    try:
+        req = urllib.request.Request(poke_request,
+                                    headers={'User-Agent': 'Mozilla/5.0'}
+                                    )
+        response = urllib.request.urlopen(req)
+        poke_response_str = response.read().decode()
+        poke_species = json.loads(poke_response_str)
+    except urllib.error.HTTPError:
+            return False
+    except urllib.error.URLError:
+            return False
+
+    if len(poke_species["varieties"]) > 1:
+        return True
+    else:
+        return False
+
+def varieties(name):
+    baseurl = "https://pokeapi.co/api/v2/pokemon-species/"
+    poke_request = baseurl + name
+    req = urllib.request.Request(poke_request,
+                                headers={'User-Agent': 'Mozilla/5.0'}
+                                )
+    response = urllib.request.urlopen(req)
+    poke_response_str = response.read().decode()
+    poke_species = json.loads(poke_response_str)
+
+    varieties = []
+    for i in range(len(poke_species["varieties"])):
+        varieties.append(poke_species["varieties"][i]["pokemon"]["name"])
+
+    return varieties
+
+print(varieties("giratina"))
 
 def pokemon_types(poke_data):
     poke_types = []
@@ -29,7 +65,7 @@ def pokemon_types(poke_data):
     elif len(poke_data["types"]) == 1:
         poke_types.append(poke_data["types"][0]["type"]["name"])
     else:
-         # This should only happen if there was ever a pokemon with 3+ types, which isn't currently in any game
+         # This should only happen if there was ever a pokemon with 3+ base types, which isn't currently in any game
          # It would be a good idea to keep this here in case the game created new mechanics which allowed for it
          # That would be pretty game breaking though ...
          return None
