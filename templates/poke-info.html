@@ -1,11 +1,152 @@
 {% extends "base.html" %}
+
 {% block title %} Pokemon Infographic {% endblock %}
 
 {% block content %}
+
+{% if not poke_data %}
+    <div class="container text-center">
+        <div class="row">
+            <div class="col">
+                <div class="alert alert-info" role="alert">
+                    <div> Sorry, we couldn't find any results for your query: "{{ name }}"</div>
+                    <div>Perhaps you forgot a character?</div>
+                </div>
+            </div>
+        </div>        
+    </div>
+
+    <div class="container">
+    <form action="/" method="GET">
+        <div class="row">
+            <div class="col offset-2">
+                <br> <input type="submit" value="Return to home"> <br><br>
+            </div>
+        </div>
+    </form>
+</div>
+    
+{% else %}
+
 <div class="container">
-    <div class="row">
-        <div class="col">{{ poke_data }}</div>
+    <div class="row bg-white">
+
+        <div class="col-2">
+            <img src="{{ splash_art }}" alt="pokemon splash art" width="210" height="210">
+        </div>
+
+        <div class="col-6 align-self-end">
+            <h2>Showing results for</h2> <br> <h4>{{ name }}</h4>
+        </div>
+
+        <div class="col-4 align-self-end">
+            <h5>TYPE:</h5>
+            {% if poke_types | length == 2 %}
+                {{ poke_types[0] }}, {{ poke_types[1] }}
+            {% else %}
+                {{ poke_types[0] }}
+            {% endif %}
+        </div>
+
+    </div>
+
+    <div class="row bg-white"> <br>
+
+        <div class="col-2 offset-2"> <h2>Index No. {{ id }}</h2></div>
+        <div class="col-2"> <h2>Height: {{ height }}</h2></div>
+        <div class="col-2"> <h2>Weight: {{ weight }}</h2></div>
+
+    </div>
+
+    <div class="row bg-white">
+
+        <div class="col offset-2">
+            <br> <h5>WEAKNESSES:</h5>
+        </div>
+    </div>
+    <div class="row bg-white">
+
+        <div class="col-3 offset-2">
+            <h6>⚡️ SUPER EFFECTIVE! (4x dmg)</h6>
+        </div>
+
+        <div class="col-2">
+            <h6>✅ Very effective! (2x dmg)</h6>
+        </div>
+
+        <div class="col-3">
+            <h6>⚠️ Not very effective (0.5x dmg)</h6>
+        </div>
+
+        <div class="col-2">
+            <h6>❌ Immune (0x dmg)</h6>
+        </div>
+
+    </div>
+
+    <div class="row bg-white">
+
+        <div class="col-3 offset-2">
+            {% if weakness_dict[4] %}
+                {% for i in weakness_dict[4] %}
+                    {{ i }}
+                    <br>
+                {% endfor %}
+            {% else %}
+                None
+            {% endif %}
+        </div>
+
+        <div class="col-2">
+            {% if weakness_dict[2] %}
+                {% for i in weakness_dict[2] %}
+                    {{ i }}
+                    <br>
+                {% endfor %}
+            {% else %}
+                None
+            {% endif %}
+        </div>
+
+        <div class="col-3">
+            {% if weakness_dict[0.5] %}
+                {% for i in weakness_dict[0.5] %}
+                    {{ i }}
+                    <br>
+                {% endfor %}
+            {% else %}
+                None
+            {% endif %}
+        </div>
+
+        <div class="col-2">
+            {% if weakness_dict[0] %}
+                {% for i in weakness_dict[0] %}
+                    {{ i }}
+                    <br>
+                {% endfor %}
+            {% else %}
+                None
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="row bg-white">
+        <br>
     </div>
 </div>
 
+<div class="container">
+    <form action="/" method="GET">
+        <div class="row">
+            <div class="col offset-2">
+            
+                <br> <input type="submit" value="Return to home"> <br><br>
+
+            </div>
+        </div>
+    </form>
+</div>
+
+{% endif %}
 {% endblock %}
