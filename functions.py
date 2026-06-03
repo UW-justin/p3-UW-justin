@@ -59,16 +59,8 @@ print(varieties("giratina"))
 
 def pokemon_types(poke_data):
     poke_types = []
-    if len(poke_data["types"]) == 2:
-        poke_types.append(poke_data["types"][0]["type"]["name"])
-        poke_types.append(poke_data["types"][1]["type"]["name"])
-    elif len(poke_data["types"]) == 1:
-        poke_types.append(poke_data["types"][0]["type"]["name"])
-    else:
-         # This should only happen if there was ever a pokemon with 3+ base types, which isn't currently in any game
-         # It would be a good idea to keep this here in case the game created new mechanics which allowed for it
-         # That would be pretty game breaking though ...
-         return None
+    for i in range(len(poke_data["types"])):
+        poke_types.append(poke_data["types"][i]["type"]["name"].title())
     
     return poke_types
 
@@ -100,17 +92,17 @@ def weakness_calc(poke_types):
              "Fire", "Water", "Grass", "Electric", "Psychic", "Ice", "Dragon", "Dark", "Fairy"]
 
     for i in range(len(poke_types)):
-        if poke_types[i] == "normal":
+        if poke_types[i] == "Normal":
             weakness[1] = weakness[1] * 2 # if pokemon is normal type, fighting type (weakness[1]) attacks do 2x damage to them
             weakness[7] = weakness[7] * 0
-        elif poke_types[i] == "fighting":
+        elif poke_types[i] == "Fighting":
             weakness[2] = weakness[2] * 2
             weakness[13] = weakness[13] * 2
             weakness[6] = weakness[6] * 0.5
             weakness[5] = weakness[5] * 0.5
             weakness[16] = weakness[16] * 0.5
             weakness[17] = weakness[17] * 2
-        elif poke_types[i] == "flying":
+        elif poke_types[i] == "Flying":
             weakness[11] = weakness[11] * 0.5
             weakness[12] = weakness[12] * 2
             weakness[14] = weakness[14] * 2
@@ -118,7 +110,7 @@ def weakness_calc(poke_types):
             weakness[4] = weakness[4] * 0
             weakness[6] = weakness[6] * 0.5
             weakness[5] = weakness[5] * 2
-        elif poke_types[i] == "poison":
+        elif poke_types[i] == "Poison":
             weakness[11] = weakness[11] * 0.5
             weakness[1] = weakness[1] * 0.5
             weakness[3] = weakness[3] * 0.5
@@ -126,14 +118,14 @@ def weakness_calc(poke_types):
             weakness[13] = weakness[13] * 2
             weakness[6] = weakness[6] * 0.5
             weakness[17] = weakness[17] * 0.5
-        elif poke_types[i] == "ground":
+        elif poke_types[i] == "Ground":
             weakness[10] = weakness[10] * 2
             weakness[11] = weakness[11] * 2
             weakness[12] = weakness[12] * 0
             weakness[14] = weakness[14] * 2
             weakness[3] = weakness[3] * 0.5
             weakness[5] = weakness[5] * 0.5
-        elif poke_types[i] == "rock":
+        elif poke_types[i] == "Rock":
             weakness[0] = weakness[0] * 0.5
             weakness[9] = weakness[9] * 0.5
             weakness[10] = weakness[10] * 2
@@ -143,21 +135,21 @@ def weakness_calc(poke_types):
             weakness[4] = weakness[4] * 2
             weakness[2] = weakness[2] * 0.5
             weakness[8] = weakness[8] * 2
-        elif poke_types[i] == "bug":
+        elif poke_types[i] == "Bug":
             weakness[9] = weakness[9] * 2
             weakness[11] = weakness[11] * 0.5
             weakness[1] = weakness[1] * 0.5
             weakness[4] = weakness[4] * 0.5
             weakness[2] = weakness[2] * 2
             weakness[5] = weakness[5] * 2
-        elif poke_types[i] == "ghost":
+        elif poke_types[i] == "Ghost":
             weakness[0] = weakness[0] * 0
             weakness[1] = weakness[1] * 0
             weakness[3] = weakness[3] * 0.5
             weakness[6] = weakness[6] * 0.5
             weakness[7] = weakness[7] * 2
             weakness[16] = weakness[16] * 2
-        elif poke_types[i] == "steel":
+        elif poke_types[i] == "Steel":
             weakness[0] = weakness[0] * 0.5
             weakness[9] = weakness[9] * 2
             weakness[11] = weakness[11] * 0.5
@@ -172,7 +164,7 @@ def weakness_calc(poke_types):
             weakness[15] = weakness[15] * 0.5
             weakness[8] = weakness[8] * 0.5
             weakness[17] = weakness[17] * 0.5
-        elif poke_types[i] == "fire":
+        elif poke_types[i] == "Fire":
             weakness[9] = weakness[9] * 0.5
             weakness[10] = weakness[10] * 2
             weakness[11] = weakness[11] * 0.5
@@ -182,14 +174,14 @@ def weakness_calc(poke_types):
             weakness[5] = weakness[5] * 2
             weakness[17] = weakness[8] * 0.5
             weakness[8] = weakness[17] * 0.5
-        elif poke_types[i] == "water":
+        elif poke_types[i] == "Water":
             weakness[9] = weakness[9] * 0.5
             weakness[10] = weakness[10] * 0.5
             weakness[11] = weakness[11] * 2
             weakness[12] = weakness[12] * 2
             weakness[14] = weakness[14] * 0.5
             weakness[8] = weakness[8] * 0.5
-        elif poke_types[i] == "grass":
+        elif poke_types[i] == "Grass":
             weakness[9] = weakness[9] * 2
             weakness[10] = weakness[10] * 0.5
             weakness[11] = weakness[11] * 0.5
@@ -199,24 +191,24 @@ def weakness_calc(poke_types):
             weakness[4] = weakness[4] * 0.5
             weakness[2] = weakness[2] * 2
             weakness[6] = weakness[6] * 2
-        elif poke_types[i] == "electric":
+        elif poke_types[i] == "Electric":
             weakness[12] = weakness[12] * 0.5
             weakness[4] = weakness[4] * 2
             weakness[2] = weakness[2] * 0.5
             weakness[8] = weakness[8] * 0.5
-        elif poke_types[i] == "psychic":
+        elif poke_types[i] == "Psychic":
             weakness[1] = weakness[1] * 0.5
             weakness[13] = weakness[13] * 0.5
             weakness[6] = weakness[6] * 2
             weakness[7] = weakness[7] * 2
             weakness[16] = weakness[16] * 2
-        elif poke_types[i] == "ice":
+        elif poke_types[i] == "Ice":
             weakness[9] = weakness[9] * 2
             weakness[14] = weakness[14] * 0.5
             weakness[1] = weakness[1] * 2
             weakness[5] = weakness[5] * 2
             weakness[8] = weakness[8] * 2            
-        elif poke_types[i] == "dragon":
+        elif poke_types[i] == "Dragon":
             weakness[9] = weakness[9] * 0.5
             weakness[10] = weakness[10] * 0.5
             weakness[11] = weakness[11] * 0.5
@@ -224,14 +216,14 @@ def weakness_calc(poke_types):
             weakness[14] = weakness[14] * 2
             weakness[15] = weakness[15] * 2
             weakness[17] = weakness[17] * 2            
-        elif poke_types[i] == "dark":
+        elif poke_types[i] == "Dark":
             weakness[1] = weakness[1] * 2
             weakness[13] = weakness[13] * 0
             weakness[6] = weakness[6] * 2
             weakness[7] = weakness[7] * 0.5
             weakness[16] = weakness[16] * 0.5
             weakness[17] = weakness[17] * 2
-        elif poke_types[i] == "fairy":
+        elif poke_types[i] == "Fairy":
             weakness[1] = weakness[1] * 0.5
             weakness[3] = weakness[3] * 2
             weakness[6] = weakness[6] * 0.5

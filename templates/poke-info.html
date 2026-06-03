@@ -15,7 +15,7 @@
                     <br><div>List of available forms for this Pokemon:</div>
                     
                     {% for i in varieties %}
-                        <h3> {{ i }} <br></h3>
+                        <a href="{{ url_for('results', name=i) }}"> <h3>{{ i }}<br></h3></a>
                     {% endfor %}
 
                     {% else %}
@@ -99,8 +99,7 @@
         <div class="col-3 offset-2">
             {% if weakness_dict[4] %}
                 {% for i in weakness_dict[4] %}
-                    {{ i }}
-                    <br>
+                    {{ i }} <br>
                 {% endfor %}
             {% else %}
                 None
@@ -110,8 +109,7 @@
         <div class="col-2">
             {% if weakness_dict[2] %}
                 {% for i in weakness_dict[2] %}
-                    {{ i }}
-                    <br>
+                    {{ i }} <br>
                 {% endfor %}
             {% else %}
                 None
@@ -121,8 +119,7 @@
         <div class="col-2">
             {% if weakness_dict[0.5] %}
                 {% for i in weakness_dict[0.5] %}
-                    {{ i }}
-                    <br>
+                    {{ i }} <br>
                 {% endfor %}
             {% else %}
                 None
@@ -132,8 +129,7 @@
         <div class="col-2">
             {% if weakness_dict[0] %}
                 {% for i in weakness_dict[0] %}
-                    {{ i }}
-                    <br>
+                    {{ i }} <br>
                 {% endfor %}
             {% else %}
                 None
