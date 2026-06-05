@@ -55,7 +55,6 @@ def varieties(name):
 
     return varieties
 
-print(varieties("giratina"))
 
 def pokemon_types(poke_data):
     poke_types = []
