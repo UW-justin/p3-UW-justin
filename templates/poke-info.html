@@ -143,15 +143,30 @@
 </div>
 
 <div class="container">
-    <form action="/" method="GET">
-        <div class="row">
-            <div class="col offset-2">
+    
+    <div class="row">
+
+        <div class="col-6 offset-1">
+            <form action="/poke-info" method="POST">
+                <br>
+                <label for="name"><h3>Search: </h3></label>
+                <input type="text" name="name" id="name" required>
+                <input type="submit" class="btn btn-primary" value="Go">
+            </form>
+        </div>
+
+        <div class="col-3 offset-2">
+            <form action="/" method="GET">
             
                 <br> <input type="submit" value="Return to home"> <br><br>
-
-            </div>
+            
+            </form>
         </div>
-    </form>
+
+        
+
+        
+    </div>
 </div>
 
 {% endif %}

@@ -26,7 +26,7 @@ def results():
 
     poke_data = functions.get_pokemon_data(name=name)
     if poke_data != None: # if pokemon name creates successful API call
-        name = name.title()
+        name = poke_data["forms"][0]["name"].title()
         poke_types = functions.pokemon_types(poke_data)
         weakness_dict = functions.weakness_calc(poke_types)
 
